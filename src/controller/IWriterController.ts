@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from "@nestjs/common";
+import { Body, Controller, Get, Post } from "@nestjs/common";
 import { PublicRouter } from "../config/auth/PublicRouterDecorator";
 import { IWriterDto } from "../dto/question/IWriterDto";
 import { IWriterService } from "../service/IWriterService";
@@ -14,11 +14,11 @@ export class IWriterController{
   @Post()
   async question(@Body() writerDto: IWriterDto){
     try {
-     await this.iwriterService.getCompletions(writerDto);
+      return await this.iwriterService.getCompletions(writerDto);
     }catch (error){
       throw error;
     }
-
-    return
   }
+
+
 }

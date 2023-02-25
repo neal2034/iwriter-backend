@@ -62,8 +62,9 @@ export class IWriterService{
       if(response.status === 200){
         console.log("success get result");
         const usage = response.data.usage
+        const result = response.data.choices[0].text;
         const completion = new Completion()
-        completion.completion = response.data.choices[0].text;
+        completion.completion = result;
         completion.prompt = writerDto.prompt;
         completion.promptTokens = usage.prompt_tokens;
         completion.completionTokens = usage.completion_tokens;
@@ -71,6 +72,11 @@ export class IWriterService{
         completion.model = response.data.model;
         completion.user = user;
         await this.completionManager.addEntity(completion);
+
+        return {
+          completion:result.slice(0, 1000),
+          callNum: callNum + 1
+        };
       }
 
     }catch (error){
