@@ -58,6 +58,7 @@ export class IWriterService{
         model: "text-davinci-003", //TODO model should change accord user select
         prompt: writerDto.prompt,
         temperature: 0.6,
+        max_tokens:3000
       });
       if(response.status === 200){
         console.log("success get result");
@@ -80,6 +81,7 @@ export class IWriterService{
       }
 
     }catch (error){
+      console.log('error is ',error);
       throw new OpenApiServerException();
     }
 

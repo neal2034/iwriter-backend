@@ -6,7 +6,7 @@ import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
 export class Completion extends AppBaseEntity{
   @Column()
   prompt:string;
-  @Column()
+  @Column({type:"text"})
   completion:string;
   @Column()
   promptTokens:number;
